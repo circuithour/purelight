@@ -2,9 +2,14 @@
     import { onMount } from "svelte";
     import Header from "../../lib/Header.svelte";
 
-    let daysInMonth = 31;
+    function getDaysInMonth(year, month) {
+        return new Date(year, month + 1, 0).getDate();
+    }
+    let currentMonth = new Date().getMonth();
+    let currentYear = new Date().getFullYear();
+    let daysInMonth = getDaysInMonth(currentYear, currentMonth);
     let today = new Date().getDate();
-    let currentMonth = new Date().getMonth(); // Get the current month
+
     let monthNames = [
         "January",
         "February",
@@ -38,10 +43,6 @@
         { length: daysInMonth },
         (_, index) => index + 1
     );
-
-    onMount(() => {
-        console.log(currentMonth);
-    });
 </script>
 
 <main>
